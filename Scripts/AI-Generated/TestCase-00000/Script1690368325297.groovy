@@ -1,7 +1,7 @@
 import com.kms.katalon.core.model.FailureHandling
+import internal.GlobalVariable as GlobalVariable
 import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
 import static com.kms.katalon.core.testobject.ObjectRepository.findTestObject
-import internal.GlobalVariable as GlobalVariable
 
 'Initialize test session: Open browser and set view port'
 
@@ -15,9 +15,9 @@ def setup() {
 
 WebUI.navigateToUrl(GlobalVariable.application_domain + '/')
 
-'step 2: At Page_home click on hyperlink_cart --> navigate to Page_cart'
+'step 2: At Page_home click on hyperlink_category_chekhly_dlya_samsung --> navigate to Page_category_chekhly-dlya-samsung'
 
-testObj = findTestObject('Object Repository/Page_home/hyperlink_cart')
+testObj = findTestObject('Object Repository/Page_home/hyperlink_category_chekhly_dlya_samsung')
 
 WebUI.delay(3)
 
@@ -29,7 +29,21 @@ WebUI.verifyMatch(WebUI.getUrl(), '.*/(?:#.*)?(?:\\?.*)?$', true)
 
 WebUI.enhancedClick(testObj)
 
-'step 3: Add visual checkpoint at Page_cart'
+'step 3: At Page_category_chekhly-dlya-samsung click on hyperlink_product_samsung_pink_cover --> navigate to Page_product_samsung-pink-cover'
+
+testObj = findTestObject('Object Repository/Page_category_chekhly-dlya-samsung/hyperlink_product_samsung_pink_cover')
+
+WebUI.delay(3)
+
+WebUI.takeScreenshot()
+
+WebUI.verifyElementPresent(testObj, 20, FailureHandling.CONTINUE_ON_FAILURE)
+
+WebUI.verifyMatch(WebUI.getUrl(), '.*/category/chekhly-dlya-samsung(?:#.*)?(?:\\?.*)?$', true)
+
+WebUI.enhancedClick(testObj)
+
+'step 4: Add visual checkpoint at Page_product_samsung-pink-cover'
 
 WebUI.takeFullPageScreenshotAsCheckpoint('TestCase-00000_visual_checkpoint')
 
